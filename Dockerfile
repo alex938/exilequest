@@ -41,13 +41,13 @@ RUN groupadd -r appuser && useradd -r -g appuser -d /app -s /sbin/nologin appuse
 
 USER appuser
 
-EXPOSE 8000
+EXPOSE 5066
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:8000/healthz/ || exit 1
+    CMD curl -f http://localhost:5066/healthz/ || exit 1
 
 CMD ["gunicorn", "exilequest.wsgi:application", \
-     "--bind", "0.0.0.0:8000", \
+     "--bind", "0.0.0.0:5066", \
      "--workers", "2", \
      "--timeout", "30", \
      "--access-logfile", "-", \
