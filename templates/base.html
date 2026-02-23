@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>{% block title %}ExileQuest — PoE1 Quest Reference{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --poe-gold: #c8a84e;
+      --poe-gold-dim: #9a7a30;
+      --poe-gold-glow: #e8c84e;
+      --poe-bg: #0d0f13;
+      --poe-card: #14171e;
+      --poe-card-border: #252a35;
+      --poe-passive: #22a557;
+      --poe-refund: #8b5cf6;
+      --poe-other: #3b82f6;
+      --poe-required: #ef4444;
+      --poe-text: #c8ccd4;
+      --poe-muted: #6b7280;
+    }
+
+    body {
+      background-color: var(--poe-bg);
+      color: var(--poe-text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+    }
+
+    /* ── Hero Banner ─────────────────────────────────── */
+    .hero-banner {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--poe-gold-dim);
+      margin-bottom: 2rem;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: 40vw;
+      max-height: 400px;
+      min-height: 200px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      filter: brightness(0.55) saturate(0.8);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(13,15,19,0.3) 0%,
+        rgba(13,15,19,0.5) 50%,
+        rgba(13,15,19,0.92) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: var(--poe-gold);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 0 40px rgba(200,168,78,0.4);
+      margin: 0;
+    }
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: var(--poe-muted);
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Navbar ───────────────────────────────────────── */
+    .navbar {
+      background: rgba(13,15,19,0.95) !important;
+      border-bottom: 1px solid var(--poe-card-border);
+      backdrop-filter: blur(10px);
+    }
+    .navbar-brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--poe-gold) !important;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+
+    /* ── Summary Cards ────────────────────────────────── */
+    .stat-card {
+      background: var(--poe-card);
+      border: 1px solid var(--poe-card-border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: var(--poe-gold-dim); }
+    .stat-card .stat-value {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-card .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--poe-muted);
+      margin-top: 0.35rem;
+    }
+    .stat-passive .stat-value { color: var(--poe-passive); }
+    .stat-refund .stat-value { color: var(--poe-refund); }
+
+    /* ── Filter Bar ───────────────────────────────────── */
+    .filter-bar {
+      background: var(--poe-card);
+      border: 1px solid var(--poe-card-border);
+      border-radius: 10px;
+      padding: 0.75rem 1.25rem;
+    }
+    .filter-bar .form-select,
+    .filter-bar .form-control {
+      background-color: var(--poe-bg);
+      border-color: var(--poe-card-border);
+      color: var(--poe-text);
+      font-size: 0.85rem;
+    }
+    .filter-bar .form-select:focus,
+    .filter-bar .form-control:focus {
+      border-color: var(--poe-gold-dim);
+      box-shadow: 0 0 0 2px rgba(200,168,78,0.15);
+    }
+    .filter-bar label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--poe-muted);
+      font-weight: 600;
+    }
+    .btn-gold {
+      background-color: var(--poe-gold-dim);
+      border-color: var(--poe-gold-dim);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .btn-gold:hover {
+      background-color: var(--poe-gold);
+      border-color: var(--poe-gold);
+      color: #000;
+    }
+
+    /* ── Act Sections ─────────────────────────────────── */
+    .act-section {
+      margin-bottom: 2rem;
+    }
+    .act-header {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--poe-gold);
+      padding: 0.6rem 1rem;
+      background: linear-gradient(90deg, rgba(200,168,78,0.12) 0%, transparent 100%);
+      border-left: 3px solid var(--poe-gold);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 0;
+    }
+
+    /* ── Quest Table ──────────────────────────────────── */
+    .quest-table {
+      background: var(--poe-card);
+      border: 1px solid var(--poe-card-border);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .quest-table thead th {
+      background: rgba(37,42,53,0.6);
+      border-bottom: 1px solid var(--poe-card-border);
+      color: var(--poe-muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.6rem 1rem;
+      white-space: nowrap;
+    }
+    .quest-table tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(37,42,53,0.5);
+      vertical-align: middle;
+      font-size: 0.9rem;
+    }
+    .quest-table tbody tr:last-child td { border-bottom: none; }
+    .quest-table tbody tr {
+      transition: background-color 0.15s;
+    }
+    .quest-table tbody tr:hover {
+      background-color: rgba(200,168,78,0.04);
+    }
+
+    .quest-name {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .quest-hint {
+      font-size: 0.78rem;
+      color: var(--poe-muted);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .quest-npc {
+      font-weight: 500;
+      color: var(--poe-text);
+      font-size: 0.85rem;
+    }
+    .quest-zone {
+      font-size: 0.78rem;
+      color: var(--poe-muted);
+    }
+
+    /* ── Reward Badges ────────────────────────────────── */
+    .reward-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .reward-passive {
+      background: rgba(34,165,87,0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34,165,87,0.3);
+    }
+    .reward-refund {
+      background: rgba(139,92,246,0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(139,92,246,0.3);
+    }
+    .reward-other {
+      background: rgba(59,130,246,0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59,130,246,0.3);
+    }
+    .reward-required {
+      background: rgba(239,68,68,0.12);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.25);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .reward-detail {
+      font-size: 0.75rem;
+      color: var(--poe-other);
+      margin-top: 3px;
+    }
+
+    /* ── Tip box ──────────────────────────────────────── */
+    .tip-box {
+      background: rgba(200,168,78,0.06);
+      border: 1px solid rgba(200,168,78,0.15);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--poe-muted);
+    }
+    .tip-box code {
+      color: var(--poe-gold);
+      background: rgba(200,168,78,0.1);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--poe-card-border);
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: var(--poe-muted);
+    }
+    footer a { color: var(--poe-gold-dim); text-decoration: none; }
+    footer a:hover { color: var(--poe-gold); }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-banner img { min-height: 160px; }
+      .hero-title { font-size: 1.6rem; }
+      .quest-table thead th { font-size: 0.65rem; padding: 0.5rem 0.6rem; }
+      .quest-table tbody td { padding: 0.5rem 0.6rem; font-size: 0.82rem; }
+    }
+  </style>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-dark mb-0 py-2">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'quest_list' %}">ExileQuest</a>
+      <span class="navbar-text text-muted" style="font-size:0.8rem;">PoE1 Quest &amp; Reward Reference</span>
+    </div>
+  </nav>
+
+  {% block hero %}{% endblock %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="container text-center">
+    <p class="mb-1"><strong style="color:var(--poe-text);">ExileQuest</strong> — Not affiliated with or endorsed by Grinding Gear Games.</p>
+    <p class="mb-1">Contact info(at)alexongames.com for enquiries or corrections.</p>
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

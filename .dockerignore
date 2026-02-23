@@ -1,0 +1,104 @@
+# Version Control
+.git
+.gitignore
+.gitattributes
+.github/
+
+# Documentation (not needed in image)
+agents.md
+README.md
+CHANGELOG*
+LICENSE*
+CONTRIBUTING*
+docs/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+pip-log.txt
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+
+# Database (built fresh in image)
+db.sqlite3
+db.sqlite3-journal
+
+# Collected static (built in image)
+staticfiles/
+
+# Media
+media/
+uploads/
+
+# Build artifacts
+dist/
+build/
+wheels/
+
+# Logs
+*.log
+logs/
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+.circleci/
+Jenkinsfile
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# Local development
+local/
+.local/
+scratch/
+
+# Root-level images (not in static/)
+exiled1.png
+exiled2.png

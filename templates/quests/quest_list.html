@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}ExileQuest — PoE1 Quest &amp; Reward Reference{% endblock %}
+
+{% block hero %}
+<div class="hero-banner">
+  <img src="{% static 'img/exiled1.png' %}" alt="Path of Exile">
+  <div class="hero-overlay"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<!-- Summary Stats -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3">
+    <div class="stat-card stat-passive">
+      <div class="stat-value">{{ total_passive }}</div>
+      <div class="stat-label">Passive Points</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="stat-card stat-refund">
+      <div class="stat-value">{{ total_refund }}</div>
+      <div class="stat-label">Refund Points</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--poe-gold);">10</div>
+      <div class="stat-label">Acts</div>
+    </div>
+  </div>
+  <div class="col-6 col-md-3">
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--poe-text);">{{ total_quests }}</div>
+      <div class="stat-label">Total Quests</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tip -->
+<div class="tip-box mb-4">
+  Type <code>/passives</code> in the PoE chat window to see which quests have granted you passive skill points.
+  Compare the output to the rewards listed below.
+</div>
+
+<!-- Skill Gem Vendor Info -->
+<div class="filter-bar mb-4" style="border-left: 3px solid var(--poe-other);">
+  <h6 style="color:var(--poe-other); font-family:'Cinzel',serif; margin-bottom:0.5rem;">Key Skill Gem Quests</h6>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="mb-1" style="font-size:0.85rem; padding-left:1.2rem; color:var(--poe-text);">
+        <li><strong>Act 1:</strong> Enemy at the Gate, The Caged Brute, The Siren's Cadence</li>
+        <li><strong>Act 2:</strong> Intruders in Black, Sharp and Cruel</li>
+        <li><strong>Act 3:</strong> Lost in Love, Sever the Right Hand, The Gemling Queen</li>
+        <li><strong>Act 4:</strong> Breaking the Seal</li>
+        <li><strong>Act 5:</strong> The Key to Freedom, Death to Purity</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <ul class="mb-1" style="font-size:0.85rem; padding-left:1.2rem; color:var(--poe-text);">
+        <li><strong>Act 6–9:</strong> Fallen from Grace, Web of Secrets, The Gemling Legion, The Storm Blade</li>
+      </ul>
+      <div style="font-size:0.82rem; color:var(--poe-muted); margin-top:0.4rem;">
+        <strong style="color:var(--poe-gold);">Vendors:</strong>
+        <strong>Siosa</strong> (Act 3 Library) — sells nearly all quest-reward gems after <em>A Fixture of Fate</em>. 
+        <strong>Lilly Roth</strong> (Act 6/10) — sells nearly every skill gem after <em>Fallen from Grace</em>.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="filter-bar mb-4">
+  <form method="get" class="row g-2 align-items-end">
+    <div class="col-auto">
+      <label class="mb-1">Act</label>
+      <select name="act" class="form-select form-select-sm" style="width:80px;">
+        <option value="">All</option>
+        {% for i in "12345678910" %}{% if forloop.counter <= 10 %}
+          <option value="{{ forloop.counter }}" {% if filter_act == forloop.counter|stringformat:"d" %}selected{% endif %}>{{ forloop.counter }}</option>
+        {% endif %}{% endfor %}
+      </select>
+    </div>
+    <div class="col-auto">
+      <label class="mb-1">Reward Type</label>
+      <select name="reward" class="form-select form-select-sm" style="width:130px;">
+        <option value="">All Rewards</option>
+        <option value="passive" {% if filter_reward == "passive" %}selected{% endif %}>Passive Point</option>
+        <option value="refund" {% if filter_reward == "refund" %}selected{% endif %}>Refund Point</option>
+        <option value="other" {% if filter_reward == "other" %}selected{% endif %}>Other</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <label class="mb-1">Search</label>
+      <input type="text" name="q" class="form-control form-control-sm" style="width:200px;"
+             value="{{ search_q }}" placeholder="Quest, NPC, zone...">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-sm btn-gold">Filter</button>
+      <a href="{% url 'quest_list' %}" class="btn btn-sm btn-outline-secondary" style="font-size:0.85rem;">Clear</a>
+    </div>
+  </form>
+</div>
+
+<!-- Quest List by Act -->
+{% for act_num, quests in acts.items %}
+<div class="act-section">
+  <div class="act-header">Act {{ act_num }}</div>
+  <table class="quest-table table table-borderless mb-0">
+    <thead>
+      <tr>
+        <th style="width:38%;">Quest</th>
+        <th style="width:20%;">NPC / Zone</th>
+        <th style="width:15%;" class="text-center">Passive</th>
+        <th style="width:15%;" class="text-center">Refund</th>
+        <th style="width:12%;" class="text-center">Other</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for quest in quests %}
+      <tr>
+        <td>
+          <span class="quest-name">{{ quest.name }}</span>
+          {% if quest.is_required %} <span class="reward-badge reward-required">Required</span>{% endif %}
+          {% if quest.hint_text %}<div class="quest-hint">{{ quest.hint_text }}</div>{% endif %}
+        </td>
+        <td>
+          <span class="quest-npc">{{ quest.npc }}</span>
+          {% if quest.primary_zone %}<div class="quest-zone">{{ quest.primary_zone }}</div>{% endif %}
+        </td>
+        <td class="text-center">
+          {% if quest.gives_passive_point %}
+            <span class="reward-badge reward-passive">+{{ quest.passive_points }}</span>
+          {% else %}
+            <span style="color:var(--poe-card-border);">—</span>
+          {% endif %}
+        </td>
+        <td class="text-center">
+          {% if quest.gives_refund_points %}
+            <span class="reward-badge reward-refund">+{{ quest.refund_points }}</span>
+          {% else %}
+            <span style="color:var(--poe-card-border);">—</span>
+          {% endif %}
+        </td>
+        <td class="text-center">
+          {% if quest.gives_other %}
+            <span class="reward-badge reward-other">Yes</span>
+            {% if quest.other_reward_text %}<div class="reward-detail">{{ quest.other_reward_text }}</div>{% endif %}
+          {% else %}
+            <span style="color:var(--poe-card-border);">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% empty %}
+<div class="text-center py-5">
+  <p style="color:var(--poe-muted); font-size:1.1rem;">No quests match your filters.</p>
+  <a href="{% url 'quest_list' %}" class="btn btn-gold">Show All Quests</a>
+</div>
+{% endfor %}
+
+<!-- Secondary banner -->
+<div class="hero-banner mt-4" style="border-top: 2px solid var(--poe-gold-dim); border-bottom: none; margin-bottom: 0;">
+  <img src="{% static 'img/exiled2.png' %}" alt="Path of Exile" style="height:160px; filter: brightness(0.3) saturate(0.6);">
+  <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(13,15,19,0.8) 0%, rgba(13,15,19,0.95) 100%); justify-content:center; align-items:center;">
+    <p style="font-family:'Cinzel',serif; color:var(--poe-gold-dim); font-size:1rem; margin:0; letter-spacing:2px;">STILL SANE, EXILE?</p>
+  </div>
+</div>
+
+{% endblock %}
