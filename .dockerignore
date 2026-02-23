@@ -5,7 +5,6 @@
 .github/
 
 # Documentation (not needed in image)
-agents.md
 README.md
 CHANGELOG*
 LICENSE*
@@ -102,3 +101,4 @@ scratch/
 # Root-level images (not in static/)
 exiled1.png
 exiled2.png
+agents.md

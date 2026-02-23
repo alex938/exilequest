@@ -133,3 +133,4 @@ yarn-error.log
 # Local development
 local/
 .local/
+agents.md
