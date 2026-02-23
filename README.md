@@ -2,7 +2,7 @@
 
 PoE1 quest & reward reference (Acts 1–10). Tracks passive points, refund points, and key quest rewards.
 
-Not affiliated with or endorsed by Grinding Gear Games. Quest data sourced from [PoE Wiki](https://www.poewiki.net/).
+Not affiliated with or endorsed by Grinding Gear Games. 
 
 ## Run
 

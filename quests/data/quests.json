@@ -1,25 +1,8 @@
 {
   "dataset_version": "1.1.0",
   "last_verified_at": "2026-02-21",
-  "sources": [
-    {
-      "name": "PoE Wiki - Quest Rewards",
-      "url": "https://www.poewiki.net/wiki/Quest_Rewards"
-    },
-    {
-      "name": "PoE Wiki - Passive skill",
-      "url": "https://www.poewiki.net/wiki/Passive_skill"
-    },
-    {
-      "name": "PoE Wiki - Deal with the Bandits",
-      "url": "https://www.poewiki.net/wiki/Deal_with_the_Bandits"
-    },
-    {
-      "name": "PoE Wiki - Quest list",
-      "url": "https://www.poewiki.net/wiki/Quest"
-    }
-  ],
-  "notes": "Campaign gives 23 passive skill points from quests (up to 24 with Bandits Kill All choice) and 20 refund points from quests. Source: PoE Wiki Book of Skill page.",
+  "sources": [],
+  "notes": "Campaign gives 23 passive skill points from quests (up to 24 with Bandits Kill All choice) and 20 refund points from quests.",
   "quests": [
     {
       "act": 1,
