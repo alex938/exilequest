@@ -1,6 +1,6 @@
 services:
   web:
-    image: alex938/poetrack:1.0
+    image: alex938/poetrack:1.2
     env_file:
       - .env
     restart: unless-stopped
