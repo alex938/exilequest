@@ -4,7 +4,7 @@
 
 {% block hero %}
 <div class="hero-banner">
-  <img src="{% static 'img/exiled1.png' %}" alt="Path of Exile">
+  <img src="{% static 'img/exiled1.webp' %}" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
   <div class="hero-overlay"></div>
 </div>
 {% endblock %}
@@ -17,6 +17,7 @@
     <div class="stat-card stat-passive">
       <div class="stat-value">{{ total_passive }}</div>
       <div class="stat-label">Passive Points</div>
+      <div class="stat-label" style="margin-top:0.1rem; font-size:0.65rem; text-transform:none; letter-spacing:0;">{{ total_passive|add:"-1" }} if you help a bandit</div>
     </div>
   </div>
   <div class="col-6 col-md-3">
@@ -27,7 +28,7 @@
   </div>
   <div class="col-6 col-md-3">
     <div class="stat-card">
-      <div class="stat-value" style="color:var(--poe-gold);">10</div>
+      <div class="stat-value" style="color:var(--poe-gold);">{{ act_choices|length }}</div>
       <div class="stat-label">Acts</div>
     </div>
   </div>
@@ -51,21 +52,17 @@
   <div class="row">
     <div class="col-md-6">
       <ul class="mb-1" style="font-size:0.85rem; padding-left:1.2rem; color:var(--poe-text);">
-        <li><strong>Act 1:</strong> Enemy at the Gate, The Caged Brute, The Siren's Cadence</li>
-        <li><strong>Act 2:</strong> Intruders in Black, Sharp and Cruel</li>
-        <li><strong>Act 3:</strong> Lost in Love, Sever the Right Hand, The Gemling Queen</li>
-        <li><strong>Act 4:</strong> Breaking the Seal</li>
-        <li><strong>Act 5:</strong> The Key to Freedom, Death to Purity</li>
+        <li><strong>Act 1:</strong> Enemy at the Gate, Mercy Mission, Breaking Some Eggs, The Caged Brute, The Siren's Cadence</li>
+        <li><strong>Act 2:</strong> Intruders in Black, Sharp and Cruel, The Root of the Problem</li>
+        <li><strong>Act 3:</strong> Lost in Love, Sever the Right Hand, A Fixture of Fate</li>
+        <li><strong>Act 4:</strong> Breaking the Seal, The Eternal Nightmare</li>
       </ul>
     </div>
     <div class="col-md-6">
-      <ul class="mb-1" style="font-size:0.85rem; padding-left:1.2rem; color:var(--poe-text);">
-        <li><strong>Act 6–9:</strong> Fallen from Grace, Web of Secrets, The Gemling Legion, The Storm Blade</li>
-      </ul>
       <div style="font-size:0.82rem; color:var(--poe-muted); margin-top:0.4rem;">
         <strong style="color:var(--poe-gold);">Vendors:</strong>
-        <strong>Siosa</strong> (Act 3 Library) — sells nearly all quest-reward gems after <em>A Fixture of Fate</em>. 
-        <strong>Lilly Roth</strong> (Act 6/10) — sells nearly every skill gem after <em>Fallen from Grace</em>.
+        <strong>Siosa</strong> (Act 3 Library) — sells quest-reward gems after <em>A Fixture of Fate</em>.
+        <strong>Lilly Roth</strong> (Act 6 &amp; 10 towns) — sells almost every non-drop gem, for any class, after <em>Fallen from Grace</em>.
       </div>
     </div>
   </div>
@@ -75,31 +72,32 @@
 <div class="filter-bar mb-4">
   <form method="get" class="row g-2 align-items-end">
     <div class="col-auto">
-      <label class="mb-1">Act</label>
-      <select name="act" class="form-select form-select-sm" style="width:80px;">
+      <label class="mb-1" for="f-act">Act</label>
+      <select id="f-act" name="act" class="form-select form-select-sm" style="width:80px;">
         <option value="">All</option>
-        {% for i in "12345678910" %}{% if forloop.counter <= 10 %}
-          <option value="{{ forloop.counter }}" {% if filter_act == forloop.counter|stringformat:"d" %}selected{% endif %}>{{ forloop.counter }}</option>
-        {% endif %}{% endfor %}
+        {% for i in act_choices %}
+          <option value="{{ i }}" {% if filter_act == i|stringformat:"d" %}selected{% endif %}>{{ i }}</option>
+        {% endfor %}
       </select>
     </div>
     <div class="col-auto">
-      <label class="mb-1">Reward Type</label>
-      <select name="reward" class="form-select form-select-sm" style="width:130px;">
+      <label class="mb-1" for="f-reward">Reward Type</label>
+      <select id="f-reward" name="reward" class="form-select form-select-sm" style="width:140px;">
         <option value="">All Rewards</option>
         <option value="passive" {% if filter_reward == "passive" %}selected{% endif %}>Passive Point</option>
         <option value="refund" {% if filter_reward == "refund" %}selected{% endif %}>Refund Point</option>
         <option value="other" {% if filter_reward == "other" %}selected{% endif %}>Other</option>
+        <option value="required" {% if filter_reward == "required" %}selected{% endif %}>Required only</option>
       </select>
     </div>
     <div class="col-auto">
-      <label class="mb-1">Search</label>
-      <input type="text" name="q" class="form-control form-control-sm" style="width:200px;"
+      <label class="mb-1" for="f-q">Search</label>
+      <input type="search" id="f-q" name="q" maxlength="200" class="form-control form-control-sm" style="width:200px;"
              value="{{ search_q }}" placeholder="Quest, NPC, zone...">
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-sm btn-gold">Filter</button>
-      <a href="{% url 'quest_list' %}" class="btn btn-sm btn-outline-secondary" style="font-size:0.85rem;">Clear</a>
+      {% if is_filtered %}<a href="{% url 'quest_list' %}" class="btn btn-sm btn-outline-secondary" style="font-size:0.85rem;">Clear</a>{% endif %}
     </div>
   </form>
 </div>
@@ -107,7 +105,8 @@
 <!-- Quest List by Act -->
 {% for act_num, quests in acts.items %}
 <div class="act-section">
-  <div class="act-header">Act {{ act_num }}</div>
+  <h2 class="act-header" id="act-{{ act_num }}">Act {{ act_num }}</h2>
+  <div class="table-responsive">
   <table class="quest-table table table-borderless mb-0">
     <thead>
       <tr>
@@ -146,8 +145,7 @@
         </td>
         <td class="text-center">
           {% if quest.gives_other %}
-            <span class="reward-badge reward-other">Yes</span>
-            {% if quest.other_reward_text %}<div class="reward-detail">{{ quest.other_reward_text }}</div>{% endif %}
+            {% if quest.other_reward_text %}<span class="reward-detail">{{ quest.other_reward_text }}</span>{% else %}<span class="reward-badge reward-other">Yes</span>{% endif %}
           {% else %}
             <span style="color:var(--poe-card-border);">—</span>
           {% endif %}
@@ -156,6 +154,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 </div>
 {% empty %}
 <div class="text-center py-5">
@@ -166,10 +165,14 @@
 
 <!-- Secondary banner -->
 <div class="hero-banner mt-4" style="border-top: 2px solid var(--poe-gold-dim); border-bottom: none; margin-bottom: 0;">
-  <img src="{% static 'img/exiled2.png' %}" alt="Path of Exile" style="height:160px; filter: brightness(0.3) saturate(0.6);">
+  <img src="{% static 'img/exiled2.webp' %}" alt="" width="1200" height="800" loading="lazy" decoding="async" style="height:160px; min-height:0; filter: brightness(0.3) saturate(0.6);">
   <div class="hero-overlay" style="background: linear-gradient(to bottom, rgba(13,15,19,0.8) 0%, rgba(13,15,19,0.95) 100%); justify-content:center; align-items:center;">
     <p style="font-family:'Cinzel',serif; color:var(--poe-gold-dim); font-size:1rem; margin:0; letter-spacing:2px;">STILL SANE, EXILE?</p>
   </div>
 </div>
 
+{% endblock %}
+
+{% block footer_extra %}
+<p class="mb-0">Data v{{ dataset_info.version }} · verified {{ dataset_info.last_verified_at }}{% for src in dataset_info.sources %} · <a href="{{ src }}" rel="noopener noreferrer" target="_blank">source</a>{% endfor %}</p>
 {% endblock %}

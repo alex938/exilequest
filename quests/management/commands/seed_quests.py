@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from django.core.management.base import BaseCommand
+from django.db import transaction
 
 from quests.models import Quest
 
@@ -15,11 +16,6 @@ class Command(BaseCommand):
             type=str,
             default=str(Path(__file__).resolve().parent.parent.parent / "data" / "quests.json"),
             help="Path to the quests.json file",
-        )
-        parser.add_argument(
-            "--force",
-            action="store_true",
-            help="Overwrite existing quests even if they exist",
         )
 
     def handle(self, *args, **options):
@@ -41,36 +37,42 @@ class Command(BaseCommand):
 
         created = 0
         updated = 0
-        for q in quests:
-            slug = q["slug"]
-            fields = {
-                "act": q["act"],
-                "name": q["name"],
-                "npc": q.get("npc", ""),
-                "primary_zone": q.get("primary_zone", ""),
-                "zones_json": q.get("zones_json", []),
-                "hint_text": q.get("hint_text", ""),
-                "is_required": q.get("is_required", False),
-                "gives_passive_point": q.get("gives_passive_point", False),
-                "passive_points": q.get("passive_points", 0),
-                "gives_refund_points": q.get("gives_refund_points", False),
-                "refund_points": q.get("refund_points", 0),
-                "gives_other": q.get("gives_other", False),
-                "other_reward_text": q.get("other_reward_text", ""),
-                "is_pinned_default": q.get("is_pinned_default", False),
-                "sort_order": q.get("sort_order", 0),
-            }
+        with transaction.atomic():
+            for q in quests:
+                fields = {
+                    "act": q["act"],
+                    "name": q["name"],
+                    "npc": q.get("npc", ""),
+                    "primary_zone": q.get("primary_zone", ""),
+                    "zones_json": q.get("zones_json", []),
+                    "hint_text": q.get("hint_text", ""),
+                    "is_required": q.get("is_required", False),
+                    "gives_passive_point": q.get("gives_passive_point", False),
+                    "passive_points": q.get("passive_points", 0),
+                    "gives_refund_points": q.get("gives_refund_points", False),
+                    "refund_points": q.get("refund_points", 0),
+                    "gives_other": q.get("gives_other", False),
+                    "other_reward_text": q.get("other_reward_text", ""),
+                    "is_pinned_default": q.get("is_pinned_default", False),
+                    "sort_order": q.get("sort_order", 0),
+                }
 
-            obj, was_created = Quest.objects.update_or_create(
-                slug=slug, defaults=fields
-            )
-            if was_created:
-                created += 1
-            else:
-                updated += 1
+                _, was_created = Quest.objects.update_or_create(
+                    slug=q["slug"], defaults=fields
+                )
+                if was_created:
+                    created += 1
+                else:
+                    updated += 1
+
+            # Drop quests that are no longer in the dataset
+            removed, _ = Quest.objects.exclude(
+                slug__in=[q["slug"] for q in quests]
+            ).delete()
 
         self.stdout.write(
             self.style.SUCCESS(
-                f"Done: {created} created, {updated} updated, {created + updated} total"
+                f"Done: {created} created, {updated} updated, {removed} removed, "
+                f"{created + updated} total"
             )
         )

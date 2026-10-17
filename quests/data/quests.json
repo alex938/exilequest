@@ -1,8 +1,11 @@
 {
-  "dataset_version": "1.1.0",
-  "last_verified_at": "2026-02-21",
-  "sources": [],
-  "notes": "Campaign gives 23 passive skill points from quests (up to 24 with Bandits Kill All choice) and 20 refund points from quests.",
+  "dataset_version": "1.2.0",
+  "last_verified_at": "2026-10-17",
+  "sources": [
+    "https://poedb.tw/us/Quest",
+    "https://poedb.tw/us/Passive_skill"
+  ],
+  "notes": "Campaign quests grant 23 passive skill points, or 24 if you kill all three bandits, plus 20 passive refund points.",
   "quests": [
     {
       "act": 1,
@@ -33,14 +36,14 @@
       "zones_json": [
         "The Tidal Island"
       ],
-      "hint_text": "Find the Medicine Chest on The Tidal Island (off The Coast). Return to Nessa.",
+      "hint_text": "Find the Medicine Chest on The Tidal Island (off The Coast) and kill Hailrake. Return to Nessa.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Quicksilver Flask",
+      "other_reward_text": "Flask (incl. Quicksilver) + support gem",
       "is_pinned_default": false,
       "sort_order": 2
     },
@@ -49,19 +52,19 @@
       "name": "Breaking Some Eggs",
       "slug": "breaking-some-eggs",
       "npc": "Tarkleigh",
-      "primary_zone": "The Submerged Passage",
+      "primary_zone": "The Mud Flats",
       "zones_json": [
         "The Mud Flats",
         "The Submerged Passage"
       ],
-      "hint_text": "Find 3 Rhoa Feathers in The Mud Flats, then enter The Submerged Passage.",
+      "hint_text": "Find the 3 Glyphs in the Rhoa nests of The Mud Flats and use them to open The Submerged Passage.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Support gem reward",
+      "other_reward_text": "Skill gem reward",
       "is_pinned_default": false,
       "sort_order": 3
     },
@@ -75,7 +78,7 @@
         "The Mud Flats",
         "The Fetid Pool"
       ],
-      "hint_text": "Destroy the Rhoa Nest in The Fetid Pool (side area off The Mud Flats).",
+      "hint_text": "Clear all monsters in The Fetid Pool (side area off The Mud Flats). Return to Tarkleigh.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -96,7 +99,7 @@
         "The Submerged Passage",
         "The Flooded Depths"
       ],
-      "hint_text": "Kill the giant crab boss in The Flooded Depths (off The Submerged Passage). Return to Tarkleigh.",
+      "hint_text": "Kill The Deep Dweller in The Flooded Depths (off The Submerged Passage). Return to Tarkleigh.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -111,21 +114,21 @@
       "act": 1,
       "name": "The Caged Brute",
       "slug": "the-caged-brute",
-      "npc": "Tarkleigh",
+      "npc": "Tarkleigh / Nessa",
       "primary_zone": "The Upper Prison",
       "zones_json": [
         "The Prisoner's Gate",
         "The Lower Prison",
         "The Upper Prison"
       ],
-      "hint_text": "Kill Brutus in The Upper Prison. Grants support gem reward.",
+      "hint_text": "Kill Brutus in The Upper Prison. Talk to Tarkleigh and Nessa for two gem rewards.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Support gem reward",
+      "other_reward_text": "Skill gem + support gem rewards",
       "is_pinned_default": false,
       "sort_order": 6
     },
@@ -139,27 +142,7 @@
         "The Ship Graveyard",
         "The Ship Graveyard Cave"
       ],
-      "hint_text": "Find the Allflame in Ship Graveyard Cave, bring to Captain Fairgraves, kill him. Talk to Bestel.",
-      "is_required": false,
-      "gives_passive_point": true,
-      "passive_points": 1,
-      "gives_refund_points": false,
-      "refund_points": 0,
-      "gives_other": true,
-      "other_reward_text": "Skill gem reward (after Fairgraves)",
-      "is_pinned_default": true,
-      "sort_order": 7
-    },
-    {
-      "act": 2,
-      "name": "The Way Forward",
-      "slug": "the-way-forward",
-      "npc": "Bestel",
-      "primary_zone": "The Western Forest",
-      "zones_json": [
-        "The Western Forest"
-      ],
-      "hint_text": "Kill Captain Arteri in The Western Forest for the Thaumetic Emblem. Opens path to Prisoner's Gate. Talk to Bestel.",
+      "hint_text": "Find the Allflame in The Ship Graveyard Cave, then kill Captain Fairgraves in The Ship Graveyard. Return to Bestel.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -168,7 +151,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": true,
-      "sort_order": 2
+      "sort_order": 7
     },
     {
       "act": 1,
@@ -180,7 +163,7 @@
         "The Cavern of Wrath",
         "The Cavern of Anger"
       ],
-      "hint_text": "Kill Merveil in The Cavern of Anger. Main Act 1 boss \u2014 opens path to Act 2.",
+      "hint_text": "Kill Merveil in The Cavern of Anger. Main Act 1 boss — opens the path to Act 2.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -189,25 +172,23 @@
       "gives_other": true,
       "other_reward_text": "Skill gem reward",
       "is_pinned_default": false,
-      "sort_order": 9
+      "sort_order": 8
     },
     {
       "act": 2,
-      "name": "Through Sacred Ground",
-      "slug": "through-sacred-ground",
-      "npc": "Yeena",
-      "primary_zone": "The Crypt Level 2",
+      "name": "The Way Forward",
+      "slug": "the-way-forward",
+      "npc": "Bestel",
+      "primary_zone": "The Western Forest",
       "zones_json": [
-        "The Crossroads",
-        "The Crypt Level 1",
-        "The Crypt Level 2"
+        "The Western Forest"
       ],
-      "hint_text": "Find the Golden Hand in Crypt Level 2 (south of Crossroads). Return to Yeena in Forest Encampment.",
+      "hint_text": "Kill Captain Arteri in The Western Forest for the Thaumetic Emblem. Use it on the seal in Act 1's Prisoner's Gate, then talk to Bestel.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
-      "gives_refund_points": true,
-      "refund_points": 2,
+      "gives_refund_points": false,
+      "refund_points": 0,
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": true,
@@ -223,16 +204,38 @@
         "The Chamber of Sins Level 1",
         "The Chamber of Sins Level 2"
       ],
-      "hint_text": "Kill Fidelitas in Chamber of Sins Level 2. Return to Greust.",
+      "hint_text": "Kill Fidelitas in The Chamber of Sins Level 2 and take the Baleful Gem. Return to Greust.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Support gem reward",
+      "other_reward_text": "Skill gem reward",
       "is_pinned_default": false,
       "sort_order": 2
+    },
+    {
+      "act": 2,
+      "name": "Through Sacred Ground",
+      "slug": "through-sacred-ground",
+      "npc": "Yeena",
+      "primary_zone": "The Crypt Level 2",
+      "zones_json": [
+        "The Crossroads",
+        "The Crypt Level 1",
+        "The Crypt Level 2"
+      ],
+      "hint_text": "Find the Golden Hand in The Crypt Level 2 (via The Fellshrine Ruins). Return to Yeena.",
+      "is_required": false,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": true,
+      "refund_points": 2,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 3
     },
     {
       "act": 2,
@@ -251,31 +254,31 @@
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Rare item reward",
+      "other_reward_text": "Flask or belt reward",
       "is_pinned_default": false,
-      "sort_order": 3
+      "sort_order": 4
     },
     {
       "act": 2,
       "name": "Sharp and Cruel",
       "slug": "sharp-and-cruel",
-      "npc": "Greust",
+      "npc": "Silk",
       "primary_zone": "The Weaver's Chambers",
       "zones_json": [
         "The Riverways",
         "The Wetlands",
         "The Weaver's Chambers"
       ],
-      "hint_text": "Kill The Weaver in The Weaver's Chambers and collect Maligaro's Spike. Return to Greust.",
+      "hint_text": "Kill The Weaver in The Weaver's Chambers and take Maligaro's Spike. Return to Silk.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Support gem reward (Ascendancy)",
+      "other_reward_text": "Support gem reward",
       "is_pinned_default": false,
-      "sort_order": 4
+      "sort_order": 5
     },
     {
       "act": 2,
@@ -288,16 +291,37 @@
         "The Western Forest",
         "The Wetlands"
       ],
-      "hint_text": "Kill or help Kraityn (Broken Bridge), Alira (Western Forest), Oak (Wetlands). Kill All = 2 passive points from Eramir.",
+      "hint_text": "Kill or help Kraityn (The Broken Bridge), Alira (The Western Forest) and Oak (The Wetlands). Killing all three = 1 passive point from Eramir. Eramir then gives you The Apex.",
       "is_required": true,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Kill All: 1 passive point. Help a bandit: passive stat bonuses instead.",
+      "other_reward_text": "Help a bandit instead: stat bonuses",
       "is_pinned_default": true,
-      "sort_order": 5
+      "sort_order": 6
+    },
+    {
+      "act": 2,
+      "name": "The Root of the Problem",
+      "slug": "the-root-of-the-problem",
+      "npc": "Yeena",
+      "primary_zone": "The Wetlands",
+      "zones_json": [
+        "The Wetlands",
+        "The Vaal Ruins"
+      ],
+      "hint_text": "Use the Baleful Gem and Maligaro's Spike to poison the ancient tree blocking The Vaal Ruins in The Wetlands.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Skill gem reward",
+      "is_pinned_default": false,
+      "sort_order": 7
     },
     {
       "act": 2,
@@ -310,7 +334,7 @@
         "The Caverns",
         "Ancient Pyramid"
       ],
-      "hint_text": "Use The Apex on the Dark Altar in the Ancient Pyramid. Kill Vaal Oversoul. Opens Act 3.",
+      "hint_text": "Use The Apex to enter The Ancient Pyramid. Kill the Vaal Oversoul. Opens Act 3.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -319,7 +343,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 6
+      "sort_order": 8
     },
     {
       "act": 3,
@@ -365,45 +389,66 @@
     },
     {
       "act": 3,
-      "name": "The Gemling Queen",
-      "slug": "the-gemling-queen",
-      "npc": "Maramoa",
-      "primary_zone": "The Solaris Temple Level 2",
+      "name": "The Ribbon Spool",
+      "slug": "the-ribbon-spool",
+      "npc": "Lady Dialla",
+      "primary_zone": "The Battlefront",
       "zones_json": [
-        "The Solaris Temple Level 1",
-        "The Solaris Temple Level 2"
+        "The Battlefront"
       ],
-      "hint_text": "Kill Lady Dialla's guardian in Solaris Temple Level 2. Talk to Maramoa/Dialla.",
+      "hint_text": "Find the Ribbon Spool in The Battlefront. Give it to Lady Dialla in The Solaris Temple.",
+      "is_required": false,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Amulet reward",
+      "is_pinned_default": false,
+      "sort_order": 3
+    },
+    {
+      "act": 3,
+      "name": "Fiery Dust",
+      "slug": "fiery-dust",
+      "npc": "Lady Dialla",
+      "primary_zone": "The Docks",
+      "zones_json": [
+        "The Docks",
+        "The Sewers"
+      ],
+      "hint_text": "Find the Thaumetic Sulphite in The Docks. Lady Dialla gives you Infernal Talc to burn the blockages in The Sewers.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Skill gem reward",
+      "other_reward_text": "Infernal Talc",
       "is_pinned_default": false,
-      "sort_order": 3
+      "sort_order": 4
     },
     {
       "act": 3,
-      "name": "Piety's Pets",
-      "slug": "pietys-pets",
-      "npc": "Grigor",
-      "primary_zone": "The Lunaris Temple Level 2",
+      "name": "A Swig of Hope",
+      "slug": "a-swig-of-hope",
+      "npc": "Captain Fairgraves",
+      "primary_zone": "The Docks",
       "zones_json": [
-        "The Lunaris Temple Level 1",
-        "The Lunaris Temple Level 2"
+        "The Marketplace",
+        "The Docks",
+        "The Imperial Gardens"
       ],
-      "hint_text": "Kill Piety in Lunaris Temple Level 2. Pick up the Tower Key.",
-      "is_required": true,
-      "gives_passive_point": true,
-      "passive_points": 1,
+      "hint_text": "Bring Chitus' Plum and the Decanter Spiritus (The Docks) to Captain Fairgraves' ghost.",
+      "is_required": false,
+      "gives_passive_point": false,
+      "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
-      "is_pinned_default": true,
-      "sort_order": 4
+      "gives_other": true,
+      "other_reward_text": "Ring reward",
+      "is_pinned_default": false,
+      "sort_order": 5
     },
     {
       "act": 3,
@@ -423,7 +468,49 @@
       "gives_other": true,
       "other_reward_text": "Skill gem reward",
       "is_pinned_default": false,
-      "sort_order": 5
+      "sort_order": 6
+    },
+    {
+      "act": 3,
+      "name": "The Gemling Queen",
+      "slug": "the-gemling-queen",
+      "npc": "Hargan",
+      "primary_zone": "The Solaris Temple Level 2",
+      "zones_json": [
+        "The Solaris Temple Level 1",
+        "The Solaris Temple Level 2"
+      ],
+      "hint_text": "Find the tomb of the Gemling Queen, Lady Dialla, in The Solaris Temple Level 2.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": false,
+      "sort_order": 7
+    },
+    {
+      "act": 3,
+      "name": "Piety's Pets",
+      "slug": "pietys-pets",
+      "npc": "Grigor",
+      "primary_zone": "The Lunaris Temple Level 2",
+      "zones_json": [
+        "The Lunaris Temple Level 1",
+        "The Lunaris Temple Level 2"
+      ],
+      "hint_text": "Kill Piety in The Lunaris Temple Level 2. Return to Grigor.",
+      "is_required": true,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 8
     },
     {
       "act": 3,
@@ -436,16 +523,16 @@
         "The Library",
         "The Archives"
       ],
-      "hint_text": "Find 4 Golden Pages in The Archives (off The Library in Imperial Gardens). Return to Siosa. Unlocks all gem purchases.",
+      "hint_text": "Find 4 Golden Pages in The Archives (via The Library). Return to Siosa.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Unlocks all quest reward gems from Siosa",
+      "other_reward_text": "Support gem reward; unlocks Siosa's gem shop",
       "is_pinned_default": false,
-      "sort_order": 6
+      "sort_order": 9
     },
     {
       "act": 3,
@@ -466,27 +553,26 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 7
+      "sort_order": 10
     },
     {
       "act": 4,
       "name": "Breaking the Seal",
       "slug": "breaking-the-seal",
       "npc": "Oyun",
-      "primary_zone": "The Mines Level 2",
+      "primary_zone": "The Dried Lake",
       "zones_json": [
         "The Dried Lake",
-        "The Mines Level 1",
-        "The Mines Level 2"
+        "Highgate"
       ],
-      "hint_text": "Use Deshret's Banner to break the seal in The Mines Level 2. Opens path to Kaom/Daresso.",
+      "hint_text": "Kill Voll in The Dried Lake for Deshret's Banner. Use it in Highgate to break the seal to The Mines. Return to Oyun.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Skill gem reward (from Dialla)",
+      "other_reward_text": "Skill gem reward",
       "is_pinned_default": false,
       "sort_order": 1
     },
@@ -557,13 +643,13 @@
       "act": 4,
       "name": "Corpus Malachus",
       "slug": "corpus-malachus",
-      "npc": "Dialla",
-      "primary_zone": "The Belly of the Beast Level 2",
+      "npc": "Piety",
+      "primary_zone": "The Harvest",
       "zones_json": [
-        "The Belly of the Beast Level 1",
-        "The Belly of the Beast Level 2"
+        "The Belly of the Beast Level 2",
+        "The Harvest"
       ],
-      "hint_text": "Place both Eyes in Rapture Device. Enter Belly of the Beast. Find Piety.",
+      "hint_text": "Collect Malachai's three organs from Doedre, Maligaro and Shavronne in The Harvest. Deliver them to Piety.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -579,42 +665,82 @@
       "name": "The Eternal Nightmare",
       "slug": "the-eternal-nightmare",
       "npc": "Dialla",
-      "primary_zone": "The Harvest",
+      "primary_zone": "The Black Core",
       "zones_json": [
-        "The Harvest"
+        "The Black Core"
       ],
-      "hint_text": "Kill Malachai in The Harvest. Piety helps during the fight. Opens Act 5.",
-      "is_required": true,
-      "gives_passive_point": false,
-      "passive_points": 0,
-      "gives_refund_points": false,
-      "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
-      "is_pinned_default": false,
-      "sort_order": 6
-    },
-    {
-      "act": 5,
-      "name": "The Key to Freedom",
-      "slug": "the-key-to-freedom",
-      "npc": "Lani",
-      "primary_zone": "Oriath Square",
-      "zones_json": [
-        "Slave Pens",
-        "Overseer's Tower",
-        "Oriath Square"
-      ],
-      "hint_text": "Kill Overseer Krow in Oriath Square.",
+      "hint_text": "Kill Malachai in The Black Core. Opens Act 5.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Skill gem reward",
+      "other_reward_text": "Support gem reward",
+      "is_pinned_default": false,
+      "sort_order": 6
+    },
+    {
+      "act": 5,
+      "name": "Return to Oriath",
+      "slug": "return-to-oriath",
+      "npc": "Lani",
+      "primary_zone": "The Slave Pens",
+      "zones_json": [
+        "The Ascent",
+        "The Slave Pens"
+      ],
+      "hint_text": "Climb The Ascent to the portal to Oriath. Escape The Slave Pens and kill Overseer Krow. Talk to Lani.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Ring reward",
       "is_pinned_default": false,
       "sort_order": 1
+    },
+    {
+      "act": 5,
+      "name": "The Key to Freedom",
+      "slug": "the-key-to-freedom",
+      "npc": "Lani",
+      "primary_zone": "The Control Blocks",
+      "zones_json": [
+        "The Control Blocks"
+      ],
+      "hint_text": "Kill Justicar Casticus in The Control Blocks. Return to Lani.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Flask reward",
+      "is_pinned_default": false,
+      "sort_order": 2
+    },
+    {
+      "act": 5,
+      "name": "In Service to Science",
+      "slug": "in-service-to-science",
+      "npc": "Vilenta",
+      "primary_zone": "The Control Blocks",
+      "zones_json": [
+        "Overseer's Tower",
+        "The Control Blocks"
+      ],
+      "hint_text": "Find the Miasmeter in The Control Blocks. Return to Vilenta.",
+      "is_required": false,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 3
     },
     {
       "act": 5,
@@ -634,30 +760,29 @@
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Also grants skill gem reward",
+      "other_reward_text": "Jewel reward",
       "is_pinned_default": false,
-      "sort_order": 2
+      "sort_order": 4
     },
     {
       "act": 5,
-      "name": "In Service to Science",
-      "slug": "in-service-to-science",
-      "npc": "Vilenta",
-      "primary_zone": "The Control Blocks",
+      "name": "The King's Feast",
+      "slug": "the-kings-feast",
+      "npc": "Bannon",
+      "primary_zone": "The Ruined Square",
       "zones_json": [
-        "Overseer's Tower",
-        "The Control Blocks"
+        "The Ruined Square"
       ],
-      "hint_text": "Find Vilenta's Miasmeter in The Control Blocks (from Oriath Square). Return to Vilenta in Overseer's Tower.",
+      "hint_text": "Kill Utula in The Ruined Square. Return to Bannon.",
       "is_required": false,
-      "gives_passive_point": true,
-      "passive_points": 1,
+      "gives_passive_point": false,
+      "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
-      "is_pinned_default": true,
-      "sort_order": 3
+      "gives_other": true,
+      "other_reward_text": "Weapon reward",
+      "is_pinned_default": false,
+      "sort_order": 5
     },
     {
       "act": 5,
@@ -669,7 +794,7 @@
         "The Ruined Square",
         "The Reliquary"
       ],
-      "hint_text": "Find 3 Karui artefacts in The Reliquary (off Ruined Square). Return to Lani.",
+      "hint_text": "Find Kitava's three Torments in The Reliquary (off The Ruined Square). Return to Lani.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -678,7 +803,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": true,
-      "sort_order": 4
+      "sort_order": 6
     },
     {
       "act": 5,
@@ -690,7 +815,7 @@
         "The Cathedral Rooftop",
         "The Torched Courts"
       ],
-      "hint_text": "Kill Kitava on the Cathedral Rooftop. Ends Part 1. Causes -30% all resistances penalty.",
+      "hint_text": "Kill Kitava on The Cathedral Rooftop. Ends Part 1. Permanent −30% to all elemental resistances.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -699,7 +824,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 5
+      "sort_order": 7
     },
     {
       "act": 6,
@@ -710,14 +835,14 @@
       "zones_json": [
         "The Twilight Strand (Act 6)"
       ],
-      "hint_text": "Clear The Twilight Strand for Lilly Roth. Unlocks her gem shop (sells all non-drop gems).",
+      "hint_text": "Clear The Twilight Strand for Lilly Roth. Unlocks her gem shop (most gems for any class).",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": true,
       "refund_points": 2,
       "gives_other": true,
-      "other_reward_text": "All non-drop-only gems from Lilly Roth",
+      "other_reward_text": "Unlocks Lilly Roth's gem shop",
       "is_pinned_default": false,
       "sort_order": 1
     },
@@ -730,16 +855,36 @@
       "zones_json": [
         "The Tidal Island (Act 6)"
       ],
-      "hint_text": "Find Bestel's Manuscript on The Tidal Island (Act 6 version). Return to Bestel.",
+      "hint_text": "Find Bestel's Manuscript (Act 6). Return to Bestel.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Rare boots",
+      "other_reward_text": "Belt or amulet reward",
       "is_pinned_default": false,
       "sort_order": 2
+    },
+    {
+      "act": 6,
+      "name": "Essence of Umbra",
+      "slug": "essence-of-umbra",
+      "npc": "Tarkleigh",
+      "primary_zone": "The Prison",
+      "zones_json": [
+        "The Prison"
+      ],
+      "hint_text": "Kill Shavronne and Brutus in The Prison so Sin can harvest her soul. Talk to Tarkleigh.",
+      "is_required": false,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Helmet reward",
+      "is_pinned_default": false,
+      "sort_order": 3
     },
     {
       "act": 6,
@@ -751,30 +896,8 @@
         "The Mud Flats (Act 6)",
         "The Karui Fortress"
       ],
-      "hint_text": "Kill Tukohama in the Karui Fortress. First Pantheon god. Talk to Tarkleigh.",
+      "hint_text": "Kill Tukohama in The Karui Fortress. Talk to Tarkleigh.",
       "is_required": true,
-      "gives_passive_point": true,
-      "passive_points": 1,
-      "gives_refund_points": false,
-      "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
-      "is_pinned_default": true,
-      "sort_order": 3
-    },
-    {
-      "act": 6,
-      "name": "The Puppet Mistress",
-      "slug": "the-puppet-mistress",
-      "npc": "Tarkleigh",
-      "primary_zone": "The Wetlands",
-      "zones_json": [
-        "The Riverways (Act 6)",
-        "The Wetlands (Act 6)",
-        "The Spawning Grounds"
-      ],
-      "hint_text": "Kill Ryslatha in The Spawning Grounds (side area in The Wetlands Act 6). Return to Tarkleigh.",
-      "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
@@ -786,16 +909,16 @@
     },
     {
       "act": 6,
-      "name": "The Cloven One",
-      "slug": "the-cloven-one",
-      "npc": "Bestel",
-      "primary_zone": "The Prisoner's Gate",
+      "name": "The Puppet Mistress",
+      "slug": "the-puppet-mistress",
+      "npc": "Tarkleigh",
+      "primary_zone": "The Spawning Ground",
       "zones_json": [
-        "The Ridge",
-        "The Prisoner's Gate"
+        "The Wetlands",
+        "The Spawning Ground"
       ],
-      "hint_text": "Kill Abberath in the Prisoner's Gate area (Act 6). Talk to Bestel.",
-      "is_required": true,
+      "hint_text": "Kill Ryslatha in The Spawning Ground (off The Wetlands). Return to Tarkleigh.",
+      "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
@@ -804,6 +927,27 @@
       "other_reward_text": "",
       "is_pinned_default": true,
       "sort_order": 5
+    },
+    {
+      "act": 6,
+      "name": "The Cloven One",
+      "slug": "the-cloven-one",
+      "npc": "Bestel",
+      "primary_zone": "The Prisoner's Gate",
+      "zones_json": [
+        "The Ridge",
+        "The Prisoner's Gate"
+      ],
+      "hint_text": "Kill Abberath in The Prisoner's Gate. Talk to Bestel.",
+      "is_required": true,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 6
     },
     {
       "act": 6,
@@ -824,48 +968,48 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 6
+      "sort_order": 7
     },
     {
       "act": 7,
       "name": "The Silver Locket",
       "slug": "the-silver-locket",
-      "npc": "Eramir",
-      "primary_zone": "The Northern Forest (Act 7)",
+      "npc": "Weylam Roth",
+      "primary_zone": "The Broken Bridge",
       "zones_json": [
-        "The Crossroads (Act 7)",
-        "The Broken Bridge (Act 7)"
+        "The Broken Bridge"
       ],
-      "hint_text": "Find the Silver Locket for Eramir. Located at The Broken Bridge.",
+      "hint_text": "Find Weylam's Silver Locket near The Broken Bridge. Return to Weylam.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Flask reward",
       "is_pinned_default": false,
       "sort_order": 1
     },
     {
       "act": 7,
-      "name": "Kishara's Star",
-      "slug": "kisharas-star",
-      "npc": "Weylam",
-      "primary_zone": "The Causeway",
+      "name": "Essence of the Artist",
+      "slug": "essence-of-the-artist",
+      "npc": "Helena",
+      "primary_zone": "Maligaro's Sanctum",
       "zones_json": [
-        "The Causeway",
-        "The Vaal City"
+        "The Crypt",
+        "The Chamber of Sins Level 1",
+        "Maligaro's Sanctum"
       ],
-      "hint_text": "Find Kishara's Star in The Causeway. Return to Helena.",
-      "is_required": false,
-      "gives_passive_point": true,
-      "passive_points": 1,
-      "gives_refund_points": true,
-      "refund_points": 2,
-      "gives_other": false,
-      "other_reward_text": "",
-      "is_pinned_default": true,
+      "hint_text": "Take Maligaro's Map from The Crypt and place it on the Reverie Device in The Chamber of Sins. Kill Maligaro. Talk to Helena.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Boots reward",
+      "is_pinned_default": false,
       "sort_order": 2
     },
     {
@@ -873,20 +1017,19 @@
       "name": "Web of Secrets",
       "slug": "web-of-secrets",
       "npc": "Silk",
-      "primary_zone": "The Temple of Decay Level 2",
+      "primary_zone": "Maligaro's Sanctum",
       "zones_json": [
-        "The Northern Forest (Act 7)",
-        "The Temple of Decay Level 1",
-        "The Temple of Decay Level 2"
+        "Maligaro's Sanctum",
+        "The Chamber of Sins Level 2"
       ],
-      "hint_text": "Kill Arakaali's Daughter in Temple of Decay Level 2. Return to Silk.",
+      "hint_text": "Take the Black Venom from Maligaro's spider in Maligaro's Sanctum. Give it to Silk in The Chamber of Sins.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Skill gem reward",
+      "other_reward_text": "Obsidian Key (opens The Den)",
       "is_pinned_default": false,
       "sort_order": 3
     },
@@ -901,7 +1044,7 @@
         "The Dread Thicket",
         "The Ashen Fields"
       ],
-      "hint_text": "Kill Gruthkul in The Dread Thicket. Return to Eramir.",
+      "hint_text": "Kill Greust, possessed by Ralakesh, in The Ashen Fields. Return to Eramir.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -914,6 +1057,27 @@
     },
     {
       "act": 7,
+      "name": "Kishara's Star",
+      "slug": "kisharas-star",
+      "npc": "Weylam Roth",
+      "primary_zone": "The Causeway",
+      "zones_json": [
+        "The Causeway",
+        "The Vaal City"
+      ],
+      "hint_text": "Find Kishara's Star in The Causeway. Return to Weylam Roth.",
+      "is_required": false,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": true,
+      "refund_points": 2,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 5
+    },
+    {
+      "act": 7,
       "name": "In Memory of Greust",
       "slug": "in-memory-of-greust",
       "npc": "Helena",
@@ -921,8 +1085,49 @@
       "zones_json": [
         "The Causeway"
       ],
-      "hint_text": "Find Greust's Necklace on The Causeway. Place on his grave in Forest Encampment. Talk to Helena.",
+      "hint_text": "Find Greust's Necklace in The Causeway and place it on his grave in The Ashen Fields. Talk to Helena.",
       "is_required": false,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Amulet reward",
+      "is_pinned_default": false,
+      "sort_order": 6
+    },
+    {
+      "act": 7,
+      "name": "Queen of Despair",
+      "slug": "queen-of-despair",
+      "npc": "Eramir",
+      "primary_zone": "The Dread Thicket",
+      "zones_json": [
+        "The Northern Forest",
+        "The Dread Thicket"
+      ],
+      "hint_text": "Kill Gruthkul, Mother of Despair, in The Dread Thicket. Return to Eramir.",
+      "is_required": false,
+      "gives_passive_point": true,
+      "passive_points": 1,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": false,
+      "other_reward_text": "",
+      "is_pinned_default": true,
+      "sort_order": 7
+    },
+    {
+      "act": 7,
+      "name": "Lighting the Way",
+      "slug": "lighting-the-way",
+      "npc": "Yeena",
+      "primary_zone": "The Dread Thicket",
+      "zones_json": [
+        "The Dread Thicket"
+      ],
+      "hint_text": "Collect 7 Fireflies in The Dread Thicket. Yeena burns open the entrance to The Temple of Decay.",
+      "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
@@ -930,28 +1135,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 5
-    },
-    {
-      "act": 7,
-      "name": "Queen of Despair",
-      "slug": "queen-of-despair",
-      "npc": "Silk",
-      "primary_zone": "The Causeway",
-      "zones_json": [
-        "The Causeway",
-        "The Vaal City"
-      ],
-      "hint_text": "Kill Garukhan in side area off The Causeway.",
-      "is_required": false,
-      "gives_passive_point": true,
-      "passive_points": 1,
-      "gives_refund_points": false,
-      "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "Pantheon soul",
-      "is_pinned_default": true,
-      "sort_order": 6
+      "sort_order": 8
     },
     {
       "act": 7,
@@ -963,7 +1147,7 @@
         "The Temple of Decay Level 1",
         "The Temple of Decay Level 2"
       ],
-      "hint_text": "Kill Arakaali in Temple of Decay. Opens Act 8.",
+      "hint_text": "Kill Arakaali in The Temple of Decay Level 2. Opens Act 8.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -972,7 +1156,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 7
+      "sort_order": 9
     },
     {
       "act": 8,
@@ -984,8 +1168,8 @@
         "The Quay",
         "The Grain Gate"
       ],
-      "hint_text": "Kill Tolman (undead) in The Quay. Talk to Clarissa.",
-      "is_required": true,
+      "hint_text": "Find the Ankh of Eternity in The Quay, bring it to Clarissa, then kill undead Tolman. Talk to Clarissa.",
+      "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": true,
@@ -994,6 +1178,26 @@
       "other_reward_text": "",
       "is_pinned_default": true,
       "sort_order": 1
+    },
+    {
+      "act": 8,
+      "name": "Essence of the Hag",
+      "slug": "essence-of-the-hag",
+      "npc": "Hargan",
+      "primary_zone": "The Toxic Conduits",
+      "zones_json": [
+        "The Toxic Conduits"
+      ],
+      "hint_text": "Kill Doedre Darktongue in The Toxic Conduits so Sin can harvest her soul. Return to Hargan.",
+      "is_required": true,
+      "gives_passive_point": false,
+      "passive_points": 0,
+      "gives_refund_points": false,
+      "refund_points": 0,
+      "gives_other": true,
+      "other_reward_text": "Ring reward",
+      "is_pinned_default": false,
+      "sort_order": 2
     },
     {
       "act": 8,
@@ -1010,21 +1214,22 @@
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Jewel reward",
       "is_pinned_default": false,
-      "sort_order": 2
+      "sort_order": 3
     },
     {
       "act": 8,
       "name": "Reflection of Terror",
       "slug": "reflection-of-terror",
       "npc": "Hargan",
-      "primary_zone": "The Grain Gate",
+      "primary_zone": "The High Gardens",
       "zones_json": [
-        "The Grain Gate"
+        "The Bath House",
+        "The High Gardens"
       ],
-      "hint_text": "Kill Yugul (Reflection of Terror) in The High Gardens. Return to Hargan.",
+      "hint_text": "Kill Yugul, Reflection of Terror, in The High Gardens (off The Bath House). Return to Hargan.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -1033,7 +1238,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": true,
-      "sort_order": 3
+      "sort_order": 4
     },
     {
       "act": 8,
@@ -1045,16 +1250,16 @@
         "The Grain Gate",
         "The Imperial Fields"
       ],
-      "hint_text": "Kill Gemling Legionnaires boss through The Grain Gate.",
-      "is_required": true,
+      "hint_text": "Kill the Gemling Legionnaires at The Grain Gate. Return to Maramoa.",
+      "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": true,
-      "other_reward_text": "Skill gem reward",
+      "gives_other": false,
+      "other_reward_text": "",
       "is_pinned_default": true,
-      "sort_order": 4
+      "sort_order": 5
     },
     {
       "act": 8,
@@ -1066,7 +1271,7 @@
         "The Lunaris Concourse",
         "The Lunaris Temple Level 2 (Act 8)"
       ],
-      "hint_text": "Kill Lunaris boss in Lunaris Temple. Needed before final Act 8 boss.",
+      "hint_text": "Kill Dusk in The Lunaris Concourse. Needed before the final Act 8 boss.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -1075,7 +1280,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 5
+      "sort_order": 6
     },
     {
       "act": 8,
@@ -1087,7 +1292,7 @@
         "The Solaris Concourse",
         "The Solaris Temple Level 2 (Act 8)"
       ],
-      "hint_text": "Kill Solaris boss in Solaris Temple. Needed before final Act 8 boss. Opens Act 9.",
+      "hint_text": "Kill Dawn in The Solaris Concourse, then defeat Solaris and Lunaris at The Harbour Bridge. Opens Act 9.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -1096,7 +1301,7 @@
       "gives_other": false,
       "other_reward_text": "",
       "is_pinned_default": false,
-      "sort_order": 6
+      "sort_order": 7
     },
     {
       "act": 9,
@@ -1115,7 +1320,7 @@
       "gives_refund_points": false,
       "refund_points": 0,
       "gives_other": true,
-      "other_reward_text": "Skill gem reward",
+      "other_reward_text": "Weapon reward",
       "is_pinned_default": false,
       "sort_order": 1
     },
@@ -1149,14 +1354,14 @@
         "The Vastiri Desert",
         "The Oasis"
       ],
-      "hint_text": "Kill Shakari in The Oasis (off Vastiri Desert). Return to Irasha.",
+      "hint_text": "Kill Shakari in The Oasis (off The Vastiri Desert). Return to Irasha.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Bottled Storm",
       "is_pinned_default": true,
       "sort_order": 3
     },
@@ -1164,14 +1369,13 @@
       "act": 9,
       "name": "The Ruler of Highgate",
       "slug": "the-ruler-of-highgate",
-      "npc": "Tasuni",
-      "primary_zone": "The Belly of the Beast (Act 9)",
+      "npc": "Tasuni / Irasha",
+      "primary_zone": "The Quarry",
       "zones_json": [
-        "The Rotting Core",
-        "The Belly of the Beast (Act 9)"
+        "The Quarry"
       ],
-      "hint_text": "Kill the Depraved Trinity in The Rotting Core. Opens Act 10.",
-      "is_required": true,
+      "hint_text": "Kill Kira and Garukhan in The Quarry. Give the Sekhema Feather to Tasuni or Irasha.",
+      "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
       "gives_refund_points": false,
@@ -1185,13 +1389,15 @@
       "act": 9,
       "name": "Recurring Nightmare",
       "slug": "recurring-nightmare",
-      "npc": "Petarus and Vanja",
+      "npc": "Sin / Lilly Roth",
       "primary_zone": "The Rotting Core",
       "zones_json": [
+        "The Boiling Lake",
+        "The Refinery",
         "The Rotting Core"
       ],
-      "hint_text": "Kill the Rotting Core nightmare boss variant.",
-      "is_required": false,
+      "hint_text": "Bring Basilisk Acid (The Boiling Lake) and Trarthan Powder (The Refinery) to Sin. Kill the Depraved Trinity in The Rotting Core. Opens Act 10.",
+      "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
@@ -1210,14 +1416,14 @@
       "zones_json": [
         "The Cathedral Rooftop (Act 10)"
       ],
-      "hint_text": "Help Bannon and the people escape through The Cathedral Rooftop. Kill Kitava's Herald.",
+      "hint_text": "Save Bannon on The Cathedral Rooftop.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Flask reward",
       "is_pinned_default": false,
       "sort_order": 1
     },
@@ -1225,13 +1431,13 @@
       "act": 10,
       "name": "No Love for Old Ghosts",
       "slug": "no-love-for-old-ghosts",
-      "npc": "Vilenta",
+      "npc": "Lani",
       "primary_zone": "The Ossuary (Act 10)",
       "zones_json": [
         "The Ravaged Square",
         "The Ossuary (Act 10)"
       ],
-      "hint_text": "Find Elixir of Allure in Ossuary (Act 10). Return to Vilenta in Oriath Docks.",
+      "hint_text": "Find the Elixir of Allure in The Ossuary. Return to Lani in Oriath Docks.",
       "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
@@ -1246,13 +1452,13 @@
       "act": 10,
       "name": "Vilenta's Vengeance",
       "slug": "vilentas-vengeance",
-      "npc": "Vilenta",
+      "npc": "Lani",
       "primary_zone": "The Control Blocks (Act 10)",
       "zones_json": [
         "The Ravaged Square",
         "The Control Blocks (Act 10)"
       ],
-      "hint_text": "Kill Vilenta in The Control Blocks (Act 10 version off The Ravaged Square).",
+      "hint_text": "Kill Vilenta in The Control Blocks (Act 10, off The Ravaged Square). Return to Lani.",
       "is_required": false,
       "gives_passive_point": true,
       "passive_points": 1,
@@ -1273,14 +1479,14 @@
         "The Ravaged Square",
         "The Reliquary (Act 10)"
       ],
-      "hint_text": "Find the Map of Tsoatha in the Reliquary (Act 10). Return to Weylam Roth in Oriath Docks.",
-      "is_required": true,
+      "hint_text": "Find the Map to Tsoatha in The Reliquary (Act 10). Return to Weylam Roth.",
+      "is_required": false,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Belt reward",
       "is_pinned_default": false,
       "sort_order": 4
     },
@@ -1294,14 +1500,14 @@
         "The Ravaged Square",
         "The Desecrated Chambers"
       ],
-      "hint_text": "Free Innocence in The Desecrated Chambers. Avarius fight.",
+      "hint_text": "Kill Avarius in The Desecrated Chambers to free Innocence.",
       "is_required": true,
       "gives_passive_point": false,
       "passive_points": 0,
       "gives_refund_points": false,
       "refund_points": 0,
-      "gives_other": false,
-      "other_reward_text": "",
+      "gives_other": true,
+      "other_reward_text": "Body armour reward",
       "is_pinned_default": false,
       "sort_order": 5
     },
@@ -1315,7 +1521,7 @@
         "The Canals",
         "The Feeding Trough"
       ],
-      "hint_text": "Kill Kitava in The Feeding Trough. Final campaign boss. Talk to Lani in Epilogue. Grants 2 passive points. Causes -30% resistance penalty.",
+      "hint_text": "Kill Kitava in The Feeding Trough. Final campaign boss. Talk to Lani. Permanent −30% to all elemental resistances (−60% total).",
       "is_required": true,
       "gives_passive_point": true,
       "passive_points": 2,
